@@ -68,3 +68,16 @@ class FileStorage:
     def close(self):
         """Call the reload method."""
         self.reload()
+
+    def get(self, cls, id):
+	"""Retrieves one object based on class name and id"""
+	if cls and id:
+		fetch_obj = "{}.{}".format(cls, id)
+		all_obj = self.all(cls)
+		return all_obj.get(fetch_obj)
+	return None
+
+    def count(self, cls=None):
+	"""Count of all objects in storage"""
+	return (len(self.all(cls)))
+		
